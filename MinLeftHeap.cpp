@@ -8,6 +8,9 @@ MinLeftHeap::MinLeftHeap() {
   treeRoot = nullptr;
   treeSize = 0;
   treeHeight = 0;
+
+  nodesInLevel = 0;
+  maxNodesInLevel = 1;
 }
 
 //Class Methods
@@ -16,6 +19,14 @@ void MinLeftHeap::Build(){
 }
 
 void MinLeftHeap::Insert(int key) {
+  treeSize++;
+  nodesInLevel++;
+  if(nodesInLevel == maxNodesInLevel) {
+    treeHeight++;
+    maxNodesInLevel = maxNodesInLevel*2;
+    nodesInLevel = 0;
+    std::cout <<"incrementing tree height. Current height: " <<treeHeight <<std::endl;
+  }
   treeRoot = Merge(new Node(key), treeRoot);
 }
 
@@ -37,14 +48,12 @@ Node* MinLeftHeap::RecMerge(Node* h1, Node* h2) {
 
 Node* MinLeftHeap::Merge(Node* h1, Node* h2) {
   if (h1 == nullptr) {
-    std::cout <<"H1 is null\n";
     return(h2);
   }
   if (h2 == nullptr) {
-    std::cout <<"H2 is null\n";
     return(h1);
   }
-  std::cout <<"H1 and H2 are not null\n";
+  // std::cout <<"H1 and H2 are not null\n";
   if (h1->getKey() < h2->getKey())
     return(RecMerge(h1, h2));
   else
@@ -93,6 +102,21 @@ void MinLeftHeap::RecPrintInorder(Node* root) {
   }
 }
 
-void MinLeftHeap::RecPrintLevelorder(Node* root) {
+void MinLeftHeap::RecPrintLevelorder(Node* root, int level) {
+  if(!isEmpty()) {
+    if(treeHeight == 1) {
+      std::cout <<root->getKey() <<", ";
+    }
+    else {
+      level--;
+      RecPrintLevelorder(root->getLeftChild(), level);
+      RecPrintLevelorder(root->getRightChild(), level);
+    }
+  }
+}
 
+void MinLeftHeap::Levelorder() {
+  for(int lcv = 1; lcv < treeHeight; lcv++) {
+    RecPrintLevelorder(treeRoot, lcv);
+  }
 }

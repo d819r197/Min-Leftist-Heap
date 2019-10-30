@@ -24,12 +24,12 @@ class MinLeftHeap {
     void RecPrintPreorder(Node* root);
     void RecPrintPostorder(Node* root);
     void RecPrintInorder(Node* root);
-    void RecPrintLevelorder(Node* root);
+    void RecPrintLevelorder(Node* root, int level);
 
     void Preorder() { RecPrintPreorder(treeRoot); }
     void Postorder() { RecPrintPostorder(treeRoot); }
     void Inorder() { RecPrintInorder(treeRoot); }
-    void Levelorder() { RecPrintLevelorder(treeRoot); }
+    void Levelorder();
 
     //Helper Functions
     void IncTree_Size() { treeSize++; }
@@ -48,6 +48,9 @@ class MinLeftHeap {
     Node* treeRoot;
     int treeSize;
     int treeHeight;
+
+    int nodesInLevel;
+    int maxNodesInLevel;
 };
 
 #endif

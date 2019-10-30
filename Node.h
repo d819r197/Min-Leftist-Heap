@@ -15,13 +15,13 @@ class Node {
     int getKey() { return(key); }
 
     int getRank() { return(rank); }
-    int ComputeRank();
+    void ComputeRank();
 
     void setLeftChild(Node* child) { leftChild = child; }
     void setRightChild(Node* child) { rightChild = child; }
     Node* getLeftChild() { return(leftChild); }
     Node* getRightChild() { return(rightChild); }
-    
+
   private:
     int key;
     int rank;

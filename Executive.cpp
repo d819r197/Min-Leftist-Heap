@@ -74,7 +74,7 @@ void Executive::run() {
         else {
           int min;
           min = mlHeap->FindMin();
-          std::cout <<"Min element: " <<min <<" has been removed from the tree.\n";
+          std::cout <<"Min element of tree: " <<min <<".\n";
         }
         break;
       }
@@ -120,7 +120,14 @@ void Executive::run() {
       //Levelorder
       case 8: {
         std::cout <<"Output: ";
-
+        if(mlHeap->isEmpty()) {
+          std::cout << "Empty tree, no traversal shown.\n.";
+        }
+        else {
+          std::cout <<"Levelorder traversal: ";
+          mlHeap->Levelorder();
+          std::cout << std::endl;
+        }
         break;
       }
       //Exit

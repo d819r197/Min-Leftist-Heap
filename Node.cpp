@@ -9,13 +9,13 @@
   }
   Node::Node(int k){
     key = k;
-    rank = ComputeRank();
+    ComputeRank();
     leftChild = nullptr;
     rightChild = nullptr;
   }
 
 //Helper Functions
-int Node::ComputeRank() {
+void Node::ComputeRank() {
   int r = 0;
   if(leftChild != nullptr) {
     r++;
