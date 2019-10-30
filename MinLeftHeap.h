@@ -13,26 +13,23 @@ class MinLeftHeap {
     //Class Methods
     void Build();
 
-    void RecHeapify(int rootIndex, int level);
-    void Heapify() { RecHeapify(0, 0); }
-
-    bool RecInsert(int * value, int index);
-    void Insert(int * value);
+    void Insert(int key);
 
     void DeleteMin();
-    void FindMin();
+    int FindMin() { return(treeRoot->getKey()); }
 
-    void Merge(MinLeftHeap* h1, MinLeftHeap* h2);
+    Node* RecMerge(Node* h1, Node* h2);
+    Node* Merge(Node* h1, Node* h2);
 
     void RecPrintPreorder(Node* root);
     void RecPrintPostorder(Node* root);
     void RecPrintInorder(Node* root);
     void RecPrintLevelorder(Node* root);
 
-    void PrintPreorder();
-    void PrintPostorder();
-    void PrintInorder();
-    void PrintLevelorder();
+    void Preorder() { RecPrintPreorder(treeRoot); }
+    void Postorder() { RecPrintPostorder(treeRoot); }
+    void Inorder() { RecPrintInorder(treeRoot); }
+    void Levelorder() { RecPrintLevelorder(treeRoot); }
 
     //Helper Functions
     void IncTree_Size() { treeSize++; }
@@ -44,8 +41,6 @@ class MinLeftHeap {
     int GetTree_Height() { return treeHeight; }
 
     Node* GetTree_Root() { return treeRoot; }
-
-    void PrintHeap();
 
     bool isEmpty() { if(treeRoot == nullptr){ return(true); } return(false); }
 

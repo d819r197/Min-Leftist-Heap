@@ -5,9 +5,10 @@
 #include "MinLeftHeap.h"
 #include "Executive.h"
 
-#define MAXINPUT 6
+#define MAXINPUT 9
 
 Executive::Executive(std::string path) {
+  mlHeap = new MinLeftHeap();
   filePath = path;
 }
 
@@ -41,8 +42,7 @@ void Executive::run() {
         int input;
         std::cout << "Please enter the value which you want to enter into the Min-Left Heap: ";
         std::cin >> input;
-        int * value = new int(input);
-        mlHeap.Insert(value);
+        mlHeap->Insert(input);
         std::cout << "Output: ";
 
         break;
@@ -56,31 +56,65 @@ void Executive::run() {
       //DeleteMin
       case 3: {
         std::cout << "Output: ";
-
+        if(mlHeap->isEmpty()) {
+          std::cout << "Empty tree, no element to delete\n.";
+        }
+        else {
+          mlHeap->DeleteMin();
+          std::cout <<"Min element has been removed from the tree.\n";
+        }
         break;
       }
       //FindMin
       case 4: {
         std::cout << "Output: ";
-
+        if(mlHeap->isEmpty()) {
+          std::cout << "Empty tree, no element to find\n.";
+        }
+        else {
+          int min;
+          min = mlHeap->FindMin();
+          std::cout <<"Min element: " <<min <<" has been removed from the tree.\n";
+        }
         break;
       }
       //Preorder
       case 5: {
         std::cout <<"Output: ";
-
+        if(mlHeap->isEmpty()) {
+          std::cout << "Empty tree, no traversal shown.\n.";
+        }
+        else {
+          std::cout <<"Preorder traversal: ";
+          mlHeap->Preorder();
+          std::cout << std::endl;
+        }
         break;
       }
       //Inorder
       case 6: {
         std::cout <<"Output: ";
-
+        if(mlHeap->isEmpty()) {
+          std::cout << "Empty tree, no traversal shown.\n.";
+        }
+        else {
+          std::cout <<"Inorder traversal: ";
+          mlHeap->Inorder();
+          std::cout << std::endl;
+        }
         break;
       }
       //Postorder
       case 7: {
         std::cout <<"Output: ";
-
+        if(mlHeap->isEmpty()) {
+          std::cout << "Empty tree, no traversal shown.\n.";
+        }
+        else {
+          std::cout <<"Postorder traversal: ";
+          mlHeap->Postorder();
+          std::cout << std::endl;
+        }
         break;
       }
       //Levelorder
@@ -116,11 +150,10 @@ bool Executive::parseInputFile() {
         // std::cout <<"current input: " <<input <<std::endl;
       }
       else {
-        // std::cout << "In loop, inserting: " <<input <<" into pq of size: " <<mlHeap.GetHeap_Size() <<std::endl;
+        // std::cout << "In loop, inserting: " <<input <<" into pq of size: " <<mlHeap->GetHeap_Size() <<std::endl;
         int strInt = std::stoi(input);
-        int * value = new int(strInt);
-        mlHeap.Insert(value);
-        // mlHeap.PrintHeap();
+        mlHeap->Insert(strInt);
+        // mlHeap->PrintHeap();
         input = "";
       }
     }

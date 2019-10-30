@@ -18,7 +18,7 @@ class Executive {
 
   private:
     std::string filePath;
-    MinLeftHeap mlHeap;
+    MinLeftHeap * mlHeap;
 
 };
 
