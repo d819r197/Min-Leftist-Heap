@@ -14,10 +14,6 @@ MinLeftHeap::MinLeftHeap() {
 }
 
 //Class Methods
-void MinLeftHeap::Build(){
-
-}
-
 void MinLeftHeap::Insert(int key) {
   treeSize++;
   nodesInLevel++;
@@ -103,8 +99,8 @@ void MinLeftHeap::RecPrintInorder(Node* root) {
 }
 
 void MinLeftHeap::RecPrintLevelorder(Node* root, int level) {
-  if(!isEmpty()) {
-    if(treeHeight == 1) {
+  if(!isEmpty() && root != nullptr) {
+    if(level == 1) {
       std::cout <<root->getKey() <<", ";
     }
     else {
@@ -116,7 +112,37 @@ void MinLeftHeap::RecPrintLevelorder(Node* root, int level) {
 }
 
 void MinLeftHeap::Levelorder() {
-  for(int lcv = 1; lcv < treeHeight; lcv++) {
+  for(int lcv = 1; lcv <= treeHeight+1; lcv++) {
     RecPrintLevelorder(treeRoot, lcv);
   }
+}
+
+bool MinLeftHeap::FindValue(Node* root, int value) {
+  if(root != nullptr) {
+    if(root->getKey() == value) {
+      return(true);
+    }
+  }
+  if(root->getLeftChild() != nullptr && root->getRightChild() != nullptr) {
+    if(FindValue(root->getLeftChild(), value)) {
+      return(true);
+    }
+    else if(FindValue(root->getLeftChild(), value)) {
+      return(true);
+    }
+    else{
+      return(false);
+    }
+  }
+  else if(root->getLeftChild() != nullptr) {
+    if(FindValue(root->getLeftChild(), value)) {
+      return(true);
+    }
+  }
+  else if(root->getRightChild() != nullptr) {
+    if(FindValue(root->getRightChild(), value)) {
+      return(true);
+    }
+  }
+  return(false);
 }

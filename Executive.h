@@ -16,6 +16,8 @@ class Executive {
     void run();
     bool parseInputFile();
 
+    void setHeap(MinLeftHeap * heap) { mlHeap = heap; }
+
   private:
     std::string filePath;
     MinLeftHeap * mlHeap;

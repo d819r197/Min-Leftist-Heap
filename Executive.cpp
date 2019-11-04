@@ -42,15 +42,57 @@ void Executive::run() {
         int input;
         std::cout << "Please enter the value which you want to enter into the Min-Left Heap: ";
         std::cin >> input;
-        mlHeap->Insert(input);
         std::cout << "Output: ";
 
+        if(mlHeap->FindValue(mlHeap->GetTree_Root(), input)) {
+          std::cout <<"Insert failed. Value: " <<input <<" already exists in the tree.\n";
+        }
+        else {
+          mlHeap->Insert(input);
+          std::cout <<"Value: " <<input << " was successfully inserted into the tree.\n";
+        }
         break;
       }
       //Merge
       case 2: {
-        std::cout << "Output: ";
+        int e1, e2, e3 = 0;
+        std::cout << "Output: Enter the three elements for the tree H2.\n";
+        std::cout <<"<< ";
+          std::cin >> e1;
+        std::cout << std::endl;
 
+        if(mlHeap->FindValue(mlHeap->GetTree_Root(),e1)) {
+          std::cout << "Error: value: " <<e1 <<" already exists in the tree. Insert a new value: ";
+          std::cin >> e1;
+          std::cout <<std::endl;
+        }
+
+        std::cout <<"<< ";
+          std::cin >> e2;
+        std::cout << std::endl;
+
+        if(mlHeap->FindValue(mlHeap->GetTree_Root(),e2)) {
+          std::cout << "Error: value: " <<e2 <<" already exists in the tree. Insert a new value: ";
+          std::cin >> e2;
+          std::cout <<std::endl;
+        }
+
+        std::cout <<"<< ";
+          std::cin >> e3;
+        std::cout << std::endl;
+
+        if(mlHeap->FindValue(mlHeap->GetTree_Root(),e3)) {
+          std::cout << "Error: value: " <<e3 <<" already exists in the tree. Insert a new value: ";
+          std::cin >> e3;
+          std::cout <<std::endl;
+        }
+
+        MinLeftHeap tempHeap;
+          tempHeap.Insert(e1);
+          tempHeap.Insert(e2);
+          tempHeap.Insert(e3);
+
+        mlHeap->SetTree_Root(mlHeap->Merge(mlHeap->GetTree_Root(), tempHeap.GetTree_Root()));
         break;
       }
       //DeleteMin
@@ -98,7 +140,7 @@ void Executive::run() {
           std::cout << "Empty tree, no traversal shown.\n.";
         }
         else {
-          std::cout <<"Inorder traversal: ";
+          std::cout <<"Inorder traversal: \n";
           mlHeap->Inorder();
           std::cout << std::endl;
         }
@@ -111,7 +153,7 @@ void Executive::run() {
           std::cout << "Empty tree, no traversal shown.\n.";
         }
         else {
-          std::cout <<"Postorder traversal: ";
+          std::cout <<"Postorder traversal: \n";
           mlHeap->Postorder();
           std::cout << std::endl;
         }
@@ -124,7 +166,7 @@ void Executive::run() {
           std::cout << "Empty tree, no traversal shown.\n.";
         }
         else {
-          std::cout <<"Levelorder traversal: ";
+          std::cout <<"Levelorder traversal: \n";
           mlHeap->Levelorder();
           std::cout << std::endl;
         }

@@ -11,8 +11,6 @@ class MinLeftHeap {
     MinLeftHeap();
 
     //Class Methods
-    void Build();
-
     void Insert(int key);
 
     void DeleteMin();
@@ -39,10 +37,13 @@ class MinLeftHeap {
     void IncTree_Height() { treeHeight++; }
     void DecTree_Height() { treeHeight--; }
     int GetTree_Height() { return treeHeight; }
+    void SetTree_Root(Node* newRoot) { treeRoot = newRoot; }
 
     Node* GetTree_Root() { return treeRoot; }
 
     bool isEmpty() { if(treeRoot == nullptr){ return(true); } return(false); }
+
+    bool FindValue(Node* root, int value);
 
   private:
     Node* treeRoot;
