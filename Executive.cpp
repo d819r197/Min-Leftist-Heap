@@ -188,7 +188,6 @@ void Executive::run() {
 }
 
 bool Executive::parseInputFile() {
-  // pq = *mlHeap;
   std::ifstream inputFile(filePath);
   std::string input;
   char c;
